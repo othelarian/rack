@@ -15,7 +15,7 @@ Item {
     property alias nameSearch: prjtsearchEdit
     property bool newProject: false
     property bool selProject: false
-    property int widthrect: 460
+    property int widthrect: 560
     property int widthlab: 65
     property int heightTitle: 40
     // elements
@@ -91,6 +91,7 @@ Item {
                 TextField {
                     id: projectnameEdit
                     width: 250
+                    onAccepted: root.createProject()
                 }
             }
             Row {
@@ -104,6 +105,7 @@ Item {
                 TextField {
                     id: projectadressEdit
                     width: 350
+                    onAccepted: root.createProject()
                 }
             }
             Row {
@@ -166,10 +168,12 @@ Item {
         anchors.top: selProjectTitle.bottom
         anchors.topMargin: 0
         anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 10
         border.color: "gray"
         border.width: 2
         width: parent.widthrect
-        height: 200
+        //height: 200
         Row {
             x: 10; y: 10
             id: projectsearchrow

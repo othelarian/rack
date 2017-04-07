@@ -25,7 +25,7 @@ Item {
     property alias nicknameSearch: cltsearchprenomEdit
     property bool newClient: false
     property bool selClient: false
-    property int widthrect: 460
+    property int widthrect: 560
     property int widthlab: 65
     property int heightTitle: 40
     // elements
@@ -207,10 +207,12 @@ Item {
         anchors.top: selClientTitle.bottom
         anchors.topMargin: 0
         anchors.horizontalCenter: parent.horizontalCenter
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 10
         border.color: "gray"
         border.width: 2
         width: parent.widthrect
-        height: 270
+        //height: 270
         Row {
             x: 10; y: 10
             id: clientsearchrow

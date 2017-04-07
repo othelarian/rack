@@ -108,6 +108,7 @@ Item {
                     anchors.left: parent.left
                     anchors.right: parent.right
                     anchors.margins: 2
+                    placeholderText: "Filtre"
                     onTextChanged: { root.filterWorkshopTools(text) }
                 }
                 ListView {
@@ -223,7 +224,7 @@ Item {
                         }
                         SpinBox {
                             width: 120; height: 30
-                            editable: true; from: 1
+                            editable: false; from: 1
                             value: quantite
                             onValueChanged: { root.changeWorkshopQuantite(idx,value) }
                         }

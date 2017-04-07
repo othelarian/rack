@@ -52,6 +52,7 @@ function testpopulate(tx) {
     tx.executeSql("INSERT INTO users VALUES(?,?,?);",['123','killian','error404'])
     tx.executeSql("INSERT INTO users VALUES(?,?,?);",['456','richard','testrichard'])
     tx.executeSql("INSERT INTO users VALUES(?,?,?);",['789','alain','testalain'])
+    tx.executeSql("INSERT INTO users VALUES(?,?,?);",['87123','alexandre','aleglise'])
     // CLIENTS #########################
     var clt = ['123-444','123','monsieur','Dupond','Pierre','14, rue de la jolie LANDERNEAU','29800','0699331122','pas d\'email']
     tx.executeSql("INSERT INTO clients VALUES(?,?,?,?,?,?,?,?,?);",clt)
@@ -291,31 +292,32 @@ function initProjectView() {
 }
 
 function createProject() {
-    projectView.nameLab.color = "black"
-    projectView.adressLab.color = "black"
-    var code = root.clientcode+"-"+dte.getFullYear()
-    code += ((dte.getMonth() < 10)? "0" : "")+dte.getMonth()
-    code += ((dte.getDay() < 10)? "0" : "")+dte.getDay()
-    code += ((dte.getHours() < 10)? "0" : "")+dte.getHours()
-    code += ((dte.getMinutes() < 10)? "0" : "")+dte.getMinutes()
-    code += ((dte.getSeconds() < 10)? "0" : "")+dte.getSeconds()
-    var req = [code,root.clientcode,'Brouillon']
-    if (projectView.nameEdit.text == "") {
-        projectView.nameLab.color = "red"
-        return
-    }
-    else req.push(projectView.nameEdit.text)
-    if (projectView.adressEdit.text == "") {
-        projectView.adressLab.color = "red"
-        return
-    }
-    else req.push(projectView.adressEdit.text)
-    var date = ((dte.getDay() < 10)? "0" : "")+dte.getDay()
-    date += "/"+((dte.getMonths() < 10)? "0" : "")+dte.getMonths()
-    date += "/"+dte.getFullYear()
-    req.push(date)
-    rackdb.transation(function(tx) {
-        tx.executeSql("INSERT INTO projects VALUES(?,?,?,?,?);",req)
+    rackdb.transaction(function(tx) {
+        var dte = new Date()
+        projectView.nameLab.color = "black"
+        projectView.adressLab.color = "black"
+        var code = root.clientcode+"-"+dte.getFullYear()
+        code += ((dte.getMonth() < 10)? "0" : "")+dte.getMonth()
+        code += ((dte.getDay() < 10)? "0" : "")+dte.getDay()
+        code += ((dte.getHours() < 10)? "0" : "")+dte.getHours()
+        code += ((dte.getMinutes() < 10)? "0" : "")+dte.getMinutes()
+        code += ((dte.getSeconds() < 10)? "0" : "")+dte.getSeconds()
+        var req = [code,root.clientcode,'Brouillon']
+        if (projectView.nameEdit.text == "") {
+            projectView.nameLab.color = "red"
+            return
+        }
+        else req.push(projectView.nameEdit.text)
+        if (projectView.adressEdit.text == "") {
+            projectView.adressLab.color = "red"
+            return
+        }
+        else req.push(projectView.adressEdit.text)
+        var date = ((dte.getDay() < 10)? "0" : "")+dte.getDay()
+        date += "/"+((dte.getMonth() < 10)? "0" : "")+dte.getMonth()
+        date += "/"+dte.getFullYear()
+        req.push(date)
+        tx.executeSql("INSERT INTO projects VALUES(?,?,?,?,?,?);",req)
         accessProject(code)
     })
 }
