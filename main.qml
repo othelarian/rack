@@ -12,13 +12,14 @@ Window {
     visible: true
     //visibility: "Maximized"
     //visibility: "FullScreen"
-    width: 640
-    height: 480
+    width: 640; minimumWidth: 640
+    height: 480; minimumHeight: 480
     title: qsTr("Logiciel de devis")
     // properties
     property var rackdb
     property string usercode
     property string clientcode
+    property string projectcode
     property bool connect: false
     property bool connbtn: true
     property color forestcol: "#254835"
@@ -28,7 +29,18 @@ Window {
     function createClient() { Main.createClient() }
     function filterClient(nom,prenom) { Main.filterClient(nom,prenom) }
     function accessClient(code) { Main.accessClient(code) }
+    function createProject() { Main.createProject() }
     function filterProject(nom) { Main.filterProject(nom) }
+    function accessProject(code) { Main.accessProject(code) }
+    function filterWorkshopTools(nom) { Main.filterWorkshopTools(nom) }
+    function addWorkshopElt(code) { Main.addWorkshopElt(code) }
+    function removeWorkshopElt(idx,cid) { Main.removeWorkshopElt(idx,cid) }
+    function changeWorkshopQuantite(idx,value) { Main.changeWorkshopQuantite(idx,value) }
+    function saveWorkshop() { Main.saveWorkshop() }
+    function validWorkshop() { Main.validWorkshop() }
+    function goBackToWorkshop() { Main.goBackToWorkshop() }
+    function validDevis() { Main.validDevis() }
+    function backStack() { Main.backStack() }
     Component.onCompleted: {
         rackdb = LocalStorage.openDatabaseSync("RakDB","1.0","",2000000,Main.dbCreate)
     }
@@ -40,12 +52,10 @@ Window {
         WelcomeView { id: welcomeView }
         ClientView { id: clientView }
         ProjectView { id: projectView }
-        //
-        // TODO : add model selection and customization
-        // TODO : add devis visualization
-        //
+        WorkshopView { id: workshopView }
+        DevisView { id: devisView }
+        ValidityView { id: validityView }
     }
-    //
     Rectangle {
         id: bandeau
         color: "white"

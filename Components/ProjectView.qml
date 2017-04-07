@@ -8,7 +8,10 @@ Item {
     property alias lstmodel: projetlistmodel
     property alias clientLn1: clientLn1
     property alias clientLn2: clientLn2
-    //
+    property alias nameLab: projectnameLab
+    property alias nameEdit: projectnameEdit
+    property alias adressLab: projectadressLab
+    property alias adressEdit: projectadressEdit
     property alias nameSearch: prjtsearchEdit
     property bool newProject: false
     property bool selProject: false
@@ -72,9 +75,58 @@ Item {
         border.color: "gray"
         border.width: 2
         width: parent.widthrect
-        height: 280
-        //
-        Text { text: "test" }
+        height: 190
+        Column {
+            anchors.fill: parent
+            anchors.margins: 10
+            spacing: 10
+            Row {
+                spacing: 10
+                Label {
+                    id: projectnameLab
+                    anchors.verticalCenter: parent.verticalCenter
+                    width: projectView.widthlab
+                    text: "Nom"
+                }
+                TextField {
+                    id: projectnameEdit
+                    width: 250
+                }
+            }
+            Row {
+                spacing: 10
+                Label {
+                    id: projectadressLab
+                    anchors.verticalCenter: parent.verticalCenter
+                    width: projectView.widthlab
+                    text: "Adresse"
+                }
+                TextField {
+                    id: projectadressEdit
+                    width: 350
+                }
+            }
+            Row {
+                anchors.horizontalCenter: parent.horizontalCenter
+                Rectangle {
+                    width: 140
+                    height: 40
+                    color: root.trunkcol
+                    radius: 3
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: root.createProject()
+                    }
+                    Text {
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        anchors.verticalCenter: parent.verticalCenter
+                        color: "white"
+                        font.pointSize: 12
+                        text: "Créer"
+                    }
+                }
+            }
+        }
     }
     Rectangle {
         id: selProjectTitle
@@ -118,7 +170,6 @@ Item {
         border.width: 2
         width: parent.widthrect
         height: 200
-        //
         Row {
             x: 10; y: 10
             id: projectsearchrow
@@ -155,10 +206,7 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: {
-                        //
-                        //
-                    }
+                    onClicked: { root.accessProject(code) }
                 }
                 Text {
                     x: 10; y: 5

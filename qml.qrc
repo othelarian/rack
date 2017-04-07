@@ -8,5 +8,9 @@
         <file>Components/ClientView.qml</file>
         <file>scripts/main.js</file>
         <file>Components/ProjectView.qml</file>
+        <file>Components/DevisView.qml</file>
+        <file>Components/WorkshopView.qml</file>
+        <file>Components/ValidityView.qml</file>
+        <file>imgs/valid.png</file>
     </qresource>
 </RCC>
