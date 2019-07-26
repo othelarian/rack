@@ -58,7 +58,7 @@ Item {
                         anchors.horizontalCenter: parent.horizontalCenter
                         width: 140
                         height: 40
-                        color: "gray"
+                        color: root.trunkcol
                         radius: 3
                         MouseArea {
                             anchors.fill: parent

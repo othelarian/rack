@@ -21,11 +21,13 @@ Item {
     property alias phoneEdit: clientPhoneEdit
     property alias emailLab: clientEmailLab
     property alias emailEdit: clientEmailEdit
+    property alias cityLab: clientCityLab
+    property alias cityEdit: clientCityEdit
     property alias nameSearch: cltsearchnomEdit
     property alias nicknameSearch: cltsearchprenomEdit
     property bool newClient: false
     property bool selClient: false
-    property int widthrect: 560
+    property int widthrect: 660
     property int widthlab: 65
     property int heightTitle: 40
     // elements
@@ -71,10 +73,11 @@ Item {
         border.color: "gray"
         border.width: 2
         width: parent.widthrect
-        height: 280
+        height: 370
         Column {
-            spacing: 10
-            padding: 10
+            anchors.fill: parent
+            anchors.margins: 20
+            spacing: 20
             Row {
                 RadioButton {
                     id: civiliteBtn1
@@ -91,7 +94,7 @@ Item {
                 }
             }
             Row {
-                spacing: 10
+                spacing: 20
                 Label {
                     id: clientNameLab
                     width: clientView.widthlab
@@ -99,7 +102,7 @@ Item {
                     color: "black"
                     text: "Nom"
                 }
-                TextField { id: clientNameEdit; width: 140 }
+                TextField { id: clientNameEdit; width: 200 }
                 Label {
                     id: clientNicknameLab
                     width: clientView.widthlab
@@ -109,49 +112,59 @@ Item {
                 }
                 TextField {
                     id: clientNicknameEdit
-                    width: 140
+                    width: 200
                     enabled: !civiliteBtn3.checked
                 }
             }
             Row {
-                spacing: 10
+                spacing: 20
                 Label {
                     id: clientAdressLab
                     width: clientView.widthlab
                     anchors.verticalCenter: parent.verticalCenter
                     text: "Adresse"
                 }
-                TextField { id: clientAdressEdit; width: 365 }
+                TextField { id: clientAdressEdit; width: 505 }
             }
             Row {
-                spacing: 10
+                spacing: 20
                 Label {
                     id: clientPostalLab
                     width: clientView.widthlab
                     anchors.verticalCenter: parent.verticalCenter
                     text: "Code Postal"
                 }
-                TextField { id: clientPostalEdit; width: 140 }
+                TextField { id: clientPostalEdit; width: 200 }
+                Label {
+                    id: clientCityLab
+                    width: clientView.widthlab
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: "Ville"
+                }
+                TextField { id: clientCityEdit; width: 200 }
+            }
+            Row {
+                spacing: 20
                 Label {
                     id: clientPhoneLab
                     width: clientView.widthlab
                     anchors.verticalCenter: parent.verticalCenter
                     text: "Téléphone"
                 }
-                TextField { id: clientPhoneEdit; width: 140 }
-            }
-            Row {
-                spacing: 10
+                TextField { id: clientPhoneEdit; width: 165 }
                 Label {
                     id: clientEmailLab
                     width: clientView.widthlab
                     anchors.verticalCenter: parent.verticalCenter
                     text: "Email"
                 }
-                TextField { id: clientEmailEdit; width: 215 }
+                TextField { id: clientEmailEdit; width: 235 }
+            }
+            Row {
+                anchors.horizontalCenter: parent.horizontalCenter
                 Rectangle {
-                    width: 140
-                    height: parent.height
+                    width: 200
+                    height: 40
                     color: root.trunkcol
                     radius: 3
                     MouseArea {
@@ -258,7 +271,7 @@ Item {
                 color: "white"
                 border.color: "black"
                 border.width: 1
-                width: 360
+                width: 500
                 height: 50
                 anchors.horizontalCenter: parent.horizontalCenter
                 MouseArea {
@@ -270,7 +283,7 @@ Item {
                     font.pointSize: 11; font.bold: true
                     text: value
                 }
-                Text { x: 10; y: 30; text: adresse+" "+postal }
+                Text { x: 10; y: 30; text: adresse+" "+postal+" "+ville }
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.right: parent.right

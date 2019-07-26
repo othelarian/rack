@@ -8,14 +8,19 @@ Item {
     property alias lstmodel: projetlistmodel
     property alias clientLn1: clientLn1
     property alias clientLn2: clientLn2
+    property alias clientLnPhone: clientLnPhone
     property alias nameLab: projectnameLab
     property alias nameEdit: projectnameEdit
     property alias adressLab: projectadressLab
     property alias adressEdit: projectadressEdit
+    property alias postalLab: projectPostalLab
+    property alias postalEdit: projectPostalEdit
+    property alias cityLab: projectCityLab
+    property alias cityEdit: projectCityEdit
     property alias nameSearch: prjtsearchEdit
     property bool newProject: false
     property bool selProject: false
-    property int widthrect: 560
+    property int widthrect: 660
     property int widthlab: 65
     property int heightTitle: 40
     // elements
@@ -33,6 +38,17 @@ Item {
             font.pointSize: 11; font.bold: true
         }
         Text { id: clientLn2; x: 20; y: 30 }
+        Text {
+            id: clientLnPhone
+            anchors.top: parent.top
+            anchors.topMargin: 5
+            anchors.right: parent.right
+            anchors.rightMargin: 10
+        }
+        MouseArea {
+            anchors.fill: parent
+            onClicked: { root.accessModClient() }
+        }
     }
     Rectangle {
         id: newProjectTitle
@@ -75,13 +91,13 @@ Item {
         border.color: "gray"
         border.width: 2
         width: parent.widthrect
-        height: 190
+        height: 250
         Column {
             anchors.fill: parent
-            anchors.margins: 10
-            spacing: 10
+            anchors.margins: 20
+            spacing: 20
             Row {
-                spacing: 10
+                spacing: 20
                 Label {
                     id: projectnameLab
                     anchors.verticalCenter: parent.verticalCenter
@@ -95,7 +111,7 @@ Item {
                 }
             }
             Row {
-                spacing: 10
+                spacing: 20
                 Label {
                     id: projectadressLab
                     anchors.verticalCenter: parent.verticalCenter
@@ -104,9 +120,26 @@ Item {
                 }
                 TextField {
                     id: projectadressEdit
-                    width: 350
+                    width: 505
                     onAccepted: root.createProject()
                 }
+            }
+            Row {
+                spacing: 20
+                Label {
+                    id: projectPostalLab
+                    width: projectView.widthlab
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: "Code Postal"
+                }
+                TextField { id: projectPostalEdit; width: 200 }
+                Label {
+                    id: projectCityLab
+                    width: projectView.widthlab
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: "Ville"
+                }
+                TextField { id: projectCityEdit; width: 200 }
             }
             Row {
                 anchors.horizontalCenter: parent.horizontalCenter
@@ -205,19 +238,20 @@ Item {
                 color: "white"
                 border.color: "black"
                 border.width: 1
-                width: 360
+                width: 500
                 height: 50
                 anchors.horizontalCenter: parent.horizontalCenter
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: { root.accessProject(code) }
+                    //onClicked: { root.accessProject(code) }
+                    onClicked: { root.accessModel(code) }
                 }
                 Text {
                     x: 10; y: 5
                     font.pointSize: 11; font.bold: true
                     text: nom+" ("+statut+")"
                 }
-                Text { x: 10; y:30; text: adresse }
+                Text { x: 10; y:30; text: adresse+" "+postal+" "+ville }
                 Text {
                     anchors.verticalCenter: parent.verticalCenter
                     anchors.right: parent.right

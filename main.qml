@@ -10,7 +10,7 @@ import "scripts/main.js" as Main
 Window {
     id: root
     visible: true
-    //visibility: "Maximized"
+    visibility: "Maximized"
     //visibility: "FullScreen"
     width: 640; minimumWidth: 640
     height: 480; minimumHeight: 480
@@ -31,7 +31,15 @@ Window {
     function accessClient(code) { Main.accessClient(code) }
     function createProject() { Main.createProject() }
     function filterProject(nom) { Main.filterProject(nom) }
-    function accessProject(code) { Main.accessProject(code) }
+    function accessModClient() { Main.accessModClient() }
+    function accessModProject() { Main.accessModProject() }
+    //
+    function modClient() { Main.modClient() }
+    //
+    function accessModel(code) { Main.accessModel(code) }
+    function changeGamme(code) { Main.changeGamme(code) }
+    function changeModele(code) { Main.changeModele(code) }
+    function accessProject() { Main.accessProject() }
     function filterWorkshopTools(nom) { Main.filterWorkshopTools(nom) }
     function addWorkshopElt(code) { Main.addWorkshopElt(code) }
     function removeWorkshopElt(idx,cid) { Main.removeWorkshopElt(idx,cid) }
@@ -52,6 +60,9 @@ Window {
         WelcomeView { id: welcomeView }
         ClientView { id: clientView }
         ProjectView { id: projectView }
+        ModClientView { id: modClientView }
+        ModelView { id: modelView }
+        ModProjectView { id: modProjectView }
         WorkshopView { id: workshopView }
         DevisView { id: devisView }
         ValidityView { id: validityView }

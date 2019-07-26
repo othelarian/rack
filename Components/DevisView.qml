@@ -9,13 +9,14 @@ Item {
     property string dateLab
     property string clientLab
     property string adressLab
+    property string gammeLab
+    property string modeleLab
     property alias tt_ht_lab: tt_ht_lab.text
     property alias tva5_lab: tva5_lab.text
     property alias tva20_lab: tva20_lab.text
     property alias tt_ttc_lab: tt_ttc_lab.text
     property string statutDevisLab
     property alias btns: lastrow.visible
-    //
     // elements
     ListModel { id: devislistmodel }
     Rectangle {
@@ -45,7 +46,12 @@ Item {
             Label { text: "Numéro de devis : "+root.projectcode }
             Label { font.bold: true; text: "Client : "+clientLab }
             Label { text: " " }
-            Label { text: "Adresse du chantier :\n"+devisView.adressLab }
+            Row {
+                spacing: 20
+                Label { text: "Adresse du chantier :\n"+devisView.adressLab }
+                Label { text: "Gamme sélectionnée :\n"+devisView.gammeLab }
+                Label { text: "Modèle sélectionné :\n"+devisView.modeleLab }
+            }
         }
         Column {
             id: sumCol

@@ -12,5 +12,8 @@
         <file>Components/WorkshopView.qml</file>
         <file>Components/ValidityView.qml</file>
         <file>imgs/valid.png</file>
+        <file>Components/ModClientView.qml</file>
+        <file>Components/ModProjectView.qml</file>
+        <file>Components/ModelView.qml</file>
     </qresource>
 </RCC>
